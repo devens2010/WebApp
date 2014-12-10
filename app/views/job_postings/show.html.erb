@@ -1,0 +1,64 @@
+<h1>Job Posting Preview</h1>
+
+<p>
+  <strong>Title:</strong>
+  <%= @job_posting.title %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @job_posting.company %>
+</p>
+
+<p>
+  <strong>Job Type:</strong>
+  <%= @job_posting.job_type.job_type %>
+</p>
+
+<% if @job_posting.pay_type.pay_type == 'Hourly' %>
+  <p>
+    <strong>Salary:</strong>
+    <%= number_to_currency(@job_posting.salary) %>/hr
+  </p>
+<% else %>
+  <p>
+    <strong>Salary:</strong>
+    <%= number_to_currency(@job_posting.salary, precision: 0) %>/yr
+  </p>
+<% end %>
+
+<p>
+  <strong>Location:</strong>
+  <%= @job_posting.location_type.location_type %>
+</p>
+
+<p>
+  <strong>Duties:</strong>
+  <%= @job_posting.duties %>
+</p>
+
+<p>
+  <strong>Basic Qualifications:</strong>
+  <%= @job_posting.basic_qualifications %>
+</p>
+
+<p>
+  <strong>Education:</strong>
+  <%= @job_posting.education %>
+</p>
+
+<p>
+  <strong>Skills:</strong>
+  <%= @job_posting.skills %>
+</p>
+
+<p>
+  <strong>How To Apply:</strong>
+  <%= @job_posting.how_to_apply %>
+</p>
+
+<% if user_signed_in? %>
+  <%= link_to "Employer Dashboard", user_index_path %>
+<% else %>
+<%= link_to "Job List", display_url %>
+<% end %>
